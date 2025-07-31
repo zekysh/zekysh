@@ -1,75 +1,250 @@
-<header>
+# DogMeet - Dating App for Dog Owners
 
-<!--
-  <<< Author notes: Course header >>>
-  Include a 1280×640 image, course title in sentence case, and a concise description in emphasis.
-  In your repository settings: enable template repository, add your 1280×640 social image, auto delete head branches.
-  Add your open source license, GitHub uses MIT license.
--->
+A React Native mobile application that connects dog owners for walks, playdates, and potential relationships. Built with Expo and featuring swipe-based matching, real-time chat, and walk scheduling.
 
-# Introduction to GitHub
+## Features
 
-_Get started using GitHub in less than an hour._
+### 🐕 Core Functionality
+- **Swipe-based Matching**: Tinder-style swiping with smooth animations
+- **Dual Profiles**: View both owner and dog information in each card
+- **Smart Filtering**: Filter by distance, dog age, breed, and gender
+- **Real-time Chat**: Message matched users
+- **Walk Scheduling**: Plan and organize dog walks with matches
+- **Photo Gallery**: Multiple photos for both owners and dogs
 
-</header>
+### 🎨 User Experience
+- **Beautiful UI**: Modern, clean design with smooth animations
+- **Gesture Controls**: Pan gestures for card swiping
+- **Photo Navigation**: Swipe through multiple photos
+- **Visual Feedback**: Like/pass indicators during swiping
+- **Responsive Design**: Works on various screen sizes
 
-<!--
-  <<< Author notes: Step 1 >>>
-  Choose 3-5 steps for your course.
-  The first step is always the hardest, so pick something easy!
-  Link to docs.github.com for further explanations.
-  Encourage users to open new tabs for steps!
--->
+### 📱 Technical Features
+- **React Native + Expo**: Cross-platform mobile development
+- **Context API**: State management
+- **Animated API**: Smooth animations and transitions
+- **Gesture Handler**: Advanced touch interactions
+- **TypeScript Ready**: Easy to convert to TypeScript
 
-## Step 1: Create a branch
+## Screenshots
 
-_Welcome to "Introduction to GitHub"! :wave:_
+### Main Screens
+- **Swipe Screen**: Discover new dog owners and their pets
+- **Matches Screen**: View your matches and start conversations
+- **Chat Screen**: Real-time messaging with matches
+- **Filters Screen**: Customize your search preferences
+- **Schedule Screen**: Plan walks with your matches
 
-**What is GitHub?**: GitHub is a collaboration platform that uses _[Git](https://docs.github.com/get-started/quickstart/github-glossary#git)_ for versioning. GitHub is a popular place to share and contribute to [open-source](https://docs.github.com/get-started/quickstart/github-glossary#open-source) software.
-<br>:tv: [Video: What is GitHub?](https://www.youtube.com/watch?v=pBy1zgt0XPc)
+## Installation
 
-**What is a repository?**: A _[repository](https://docs.github.com/get-started/quickstart/github-glossary#repository)_ is a project containing files and folders. A repository tracks versions of files and folders. For more information, see "[About repositories](https://docs.github.com/en/repositories/creating-and-managing-repositories/about-repositories)" from GitHub Docs.
+### Prerequisites
+- Node.js (v16 or higher)
+- npm or yarn
+- Expo CLI (`npm install -g expo-cli`)
+- Expo Go app on your mobile device
 
-**What is a branch?**: A _[branch](https://docs.github.com/en/get-started/quickstart/github-glossary#branch)_ is a parallel version of your repository. By default, your repository has one branch named `main` and it is considered to be the definitive branch. Creating additional branches allows you to copy the `main` branch of your repository and safely make any changes without disrupting the main project. Many people use branches to work on specific features without affecting any other parts of the project.
+### Setup
 
-Branches allow you to separate your work from the `main` branch. In other words, everyone's work is safe while you contribute. For more information, see "[About branches](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/about-branches)".
+1. **Clone the repository**
+   ```bash
+   git clone <repository-url>
+   cd dogmeet-app
+   ```
 
-**What is a profile README?**: A _[profile README](https://docs.github.com/account-and-profile/setting-up-and-managing-your-github-profile/customizing-your-profile/managing-your-profile-readme)_ is essentially an "About me" section on your GitHub profile where you can share information about yourself with the community on GitHub.com. GitHub shows your profile README at the top of your profile page. For more information, see "[Managing your profile README](https://docs.github.com/en/account-and-profile/setting-up-and-managing-your-github-profile/customizing-your-profile/managing-your-profile-readme)".
+2. **Install dependencies**
+   ```bash
+   npm install
+   ```
 
-![profile-readme-example](/images/profile-readme-example.png)
+3. **Start the development server**
+   ```bash
+   npm start
+   ```
 
-### :keyboard: Activity: Your first branch
+4. **Run on device**
+   - Scan the QR code with Expo Go app (Android) or Camera app (iOS)
+   - Or press `a` for Android emulator, `i` for iOS simulator
 
-1. Open a new browser tab and navigate to your newly made repository. Then, work on the steps in your second tab while you read the instructions in this tab.
-2. Navigate to the **< > Code** tab in the header menu of your repository.
+## Project Structure
 
-   ![code-tab](/images/code-tab.png)
+```
+dogmeet-app/
+├── App.js                 # Main application component
+├── package.json          # Dependencies and scripts
+├── app.json             # Expo configuration
+├── babel.config.js      # Babel configuration
+└── assets/              # Images and static assets
+    ├── icon.png
+    ├── splash.png
+    └── adaptive-icon.png
+```
 
-3. Click on the **main** branch drop-down.
+## Architecture
 
-   ![main-branch-dropdown](/images/main-branch-dropdown.png)
+### Components
+- **UserProvider**: Context provider for user state management
+- **SwipeCard**: Animated card component with gesture handling
+- **SwipeScreen**: Main discovery screen with card stack
+- **MatchesScreen**: Display and manage matches
+- **ChatScreen**: Real-time messaging interface
+- **FiltersScreen**: Search preferences configuration
+- **ScheduleWalkScreen**: Walk planning interface
 
-4. In the field, name your branch `my-first-branch`. In this case, the name must be `my-first-branch` to trigger the course workflow.
-5. Click **Create branch: my-first-branch** to create your branch.
+### State Management
+- Uses React Context API for global state
+- Local state for component-specific data
+- Mock data for development and testing
 
-   ![create-branch-button](/images/create-branch-button.png)
+### Key Features Implementation
 
-   The branch will automatically switch to the one you have just created.
-   The **main** branch drop-down bar will reflect your new branch and display the new branch name.
+#### Swipe Gestures
+```javascript
+// Pan gesture handling with spring animations
+const onGestureEvent = Animated.event(
+  [{ nativeEvent: { translationX: pan.x, translationY: pan.y } }],
+  { useNativeDriver: false }
+);
+```
 
-6. Wait about 20 seconds then refresh this page (the one you're following instructions from). [GitHub Actions](https://docs.github.com/en/actions) will automatically update to the next step.
+#### Real-time Chat
+```javascript
+// Message sending with timestamp
+const sendMessage = (chatId, message) => {
+  setChats(prev => ({
+    ...prev,
+    [chatId]: {
+      ...prev[chatId],
+      messages: [...prev[chatId].messages, newMessage]
+    }
+  }));
+};
+```
 
-<footer>
+#### Smart Filtering
+```javascript
+// Multi-criteria filtering
+const getAvailableUsers = () => {
+  return mockUsers.filter(user => {
+    // Distance, age, breed, gender filtering
+    return matchesCriteria(user, filters);
+  });
+};
+```
 
-<!--
-  <<< Author notes: Footer >>>
-  Add a link to get support, GitHub status page, code of conduct, license link.
--->
+## Customization
+
+### Adding New Features
+1. **Profile Editing**: Add user profile management
+2. **Location Services**: Real GPS-based distance calculation
+3. **Push Notifications**: Real-time message notifications
+4. **Video Calls**: Integration with video calling services
+5. **Social Features**: Photo sharing, stories, group walks
+
+### Styling
+The app uses a comprehensive StyleSheet with:
+- **Color Scheme**: Blue (#007AFF) primary, with green/red accents
+- **Typography**: Bold headings, readable body text
+- **Shadows**: Consistent elevation and depth
+- **Responsive Design**: Adapts to different screen sizes
+
+### Mock Data
+Currently uses static mock data. To integrate with a backend:
+1. Replace mock data with API calls
+2. Add authentication
+3. Implement real-time messaging
+4. Add image upload functionality
+
+## Dependencies
+
+### Core Dependencies
+- **react-native**: 0.72.6
+- **expo**: ~49.0.15
+- **react-native-gesture-handler**: Touch gesture handling
+- **react-native-reanimated**: High-performance animations
+- **@expo/vector-icons**: Icon library
+
+### Development Dependencies
+- **@babel/core**: JavaScript compiler
+- **babel-preset-expo**: Expo-specific Babel preset
+
+## Performance Considerations
+
+### Optimizations Implemented
+- **FlatList**: Efficient list rendering for matches
+- **Image Optimization**: Proper image sizing and caching
+- **Animation Performance**: Native driver where possible
+- **State Management**: Minimal re-renders with Context API
+
+### Recommended Improvements
+- **Image Lazy Loading**: Load images on demand
+- **Virtual Scrolling**: For large lists
+- **Memory Management**: Image cleanup and caching
+- **Bundle Splitting**: Code splitting for faster loading
+
+## Development
+
+### Available Scripts
+```bash
+npm start          # Start Expo development server
+npm run android    # Run on Android device/emulator
+npm run ios        # Run on iOS device/simulator
+npm run web        # Run on web browser
+```
+
+### Testing
+To add testing:
+```bash
+npm install --save-dev jest react-test-renderer
+```
+
+### Debugging
+- Use Expo Developer Tools
+- React Native Debugger
+- Flipper integration for advanced debugging
+
+## Contributing
+
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+## License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+## Acknowledgments
+
+- **Expo Team**: For the amazing development platform
+- **React Native Community**: For gesture handling and animation libraries
+- **Unsplash**: For placeholder images
+- **Design Inspiration**: Modern dating app UX patterns
+
+## Future Roadmap
+
+### Phase 1: Core Features ✅
+- [x] Swipe matching
+- [x] Basic chat
+- [x] Walk scheduling
+- [x] Filtering
+
+### Phase 2: Enhanced Features 🚧
+- [ ] User authentication
+- [ ] Real-time messaging
+- [ ] Push notifications
+- [ ] Photo upload
+
+### Phase 3: Advanced Features 📋
+- [ ] Video calls
+- [ ] Group walks
+- [ ] Social features
+- [ ] Premium features
+
+## Support
+
+For support, email support@dogmeet.app or open an issue on GitHub.
 
 ---
 
-Get help: [Post in our discussion board](https://github.com/orgs/skills/discussions/categories/introduction-to-github) &bull; [Review the GitHub status page](https://www.githubstatus.com/)
-
-&copy; 2024 GitHub &bull; [Code of Conduct](https://www.contributor-covenant.org/version/2/1/code_of_conduct/code_of_conduct.md) &bull; [MIT License](https://gh.io/mit)
-
-</footer>
+**Made with ❤️ for dog lovers everywhere** 🐕
